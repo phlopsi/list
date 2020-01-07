@@ -1,3 +1,5 @@
+#![feature(dropck_eyepatch)]
+
 pub struct List<T> {
     head: Link<T>,
 }
