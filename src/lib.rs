@@ -105,6 +105,19 @@ impl<'a, T> Iterator for IterMut<'a, T> {
     }
 }
 
+// Ensure that `LinkedList` and its read-only iterators are covariant in their type parameters.
+#[allow(dead_code)]
+fn assert_covariance() {
+    fn a<'a>(x: List<&'static str>) -> List<&'a str> {
+        x
+    }
+    fn b<'i, 'a>(x: Iter<'i, &'static str>) -> Iter<'i, &'a str> {
+        x
+    }
+    fn c<'a>(x: IntoIter<&'static str>) -> IntoIter<&'a str> {
+        x
+    }
+}
 
 #[cfg(test)]
 mod test {
